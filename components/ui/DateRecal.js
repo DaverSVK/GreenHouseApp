@@ -13,16 +13,13 @@ function ExpenseDate({dateFull, style, style2}) {
     const dayS = noMonth.substring(0, noMonth.indexOf(' '));
     const hour = noDay.substring(0, noDay.indexOf(':')+3);
   
-    const newDate = new Date(+(yearS),+(monthS)-1,+(dayS))
-    const month = months[newDate.getMonth()];
-    const day = dayS;
-    const year = newDate.getFullYear();
-    
+    const month = months[(monthS)-1];
+ 
     return (
       <View style={style}>
-        <Text style={[styles.textFieldDate,style2]}>{day}.</Text>
+        <Text style={[styles.textFieldDate,style2]}>{dayS}.</Text>
         <Text style={[styles.textFieldDate,style2]}>{month}</Text>
-        <Text style={[styles.textFieldDate,style2]}>{year}</Text>
+        <Text style={[styles.textFieldDate,style2]}>{yearS}</Text>
         <Text style={[styles.textFieldDate,style2]}>{hour}</Text>
       </View>
     );
