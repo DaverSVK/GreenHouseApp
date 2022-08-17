@@ -1,11 +1,16 @@
 import { View, Text, StyleSheet, Button } from "react-native";
 import Colors from "../../constants/Colors";
 import DateRecal from "../ui/DateRecal";
+import Controler from "../../comunication/Controler";
 
-function SingleLogFullSize({onCancel, date, temperature, humidity,water}) {
+function SingleLogFullSize({onCancel, date, temperature, humidity,water, id}) {
   const dateFull = new String(date);
   function cancelHandler() {
     onCancel(null);
+  }
+  function deleteHandler() {
+    onCancel(null);
+    Controler.deleteLogSample(id);
   }
   return (
     <View style={styles.container}>
@@ -28,6 +33,11 @@ function SingleLogFullSize({onCancel, date, temperature, humidity,water}) {
           <Text style={styles.basicTextWater}>Water4: {water}</Text>
         </View>
         <View style={styles.containerButton}>
+        <Button
+              title="Delete"
+              color={Colors.buttonDelete}
+              onPress={deleteHandler}
+              />
         <Button
               title="Cancel"
               color={Colors.buttonCancel}

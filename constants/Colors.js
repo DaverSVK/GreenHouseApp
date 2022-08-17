@@ -7,6 +7,7 @@ const Colors = {
     ascent500: "#ddb52f",
     border500: "#4d4d4d",
     buttonCancel: "#ce4f25",
+    buttonDelete: "#3b021f",
 
 };
 

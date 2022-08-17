@@ -20,7 +20,7 @@ function LogsScreen() {
       setLogSample(response.data);
       renderSample = logSample.slice(logSample.length - 10, logSample.length);
     });
-  }, []);
+  }, [pickedLog]);
 
   renderSample = logSample.slice(logSample.length - 10, logSample.length);
 
@@ -30,6 +30,7 @@ function LogsScreen() {
       renderItem={(itemData) => (
         <SingleLog
           onPress={logStateHandler}
+          id={itemData.item.id}
           date={itemData.item.date}
           temperature={itemData.item.temperature}
           humidity={itemData.item.humidity}
@@ -39,7 +40,18 @@ function LogsScreen() {
       keyExtractor={(item) => item.id}
     />
   );
-  if(pickedLog !== null){pickeLog = <SingleLogFullSize onCancel={logStateHandler} date={pickedLog.date} temperature={pickedLog.temperature} humidity={pickedLog.humidity} water={pickedLog.water}/>}
+  if (pickedLog !== null) {
+    pickeLog = (
+      <SingleLogFullSize
+        onCancel={logStateHandler}
+        id={pickedLog.id}
+        date={pickedLog.date}
+        temperature={pickedLog.temperature}
+        humidity={pickedLog.humidity}
+        water={pickedLog.water}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>

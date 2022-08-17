@@ -15,6 +15,9 @@ class Controller{
   createLogSample = (jsonObject) => {
     axios.post(URL, jsonObject);
   }
+  deleteLogSample = (id) => {
+    axios.delete(URL+'/'+id);
+  }
 }
 
 export default new Controller();
