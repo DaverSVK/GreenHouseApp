@@ -8,6 +8,8 @@ const Colors = {
     border500: "#4d4d4d",
     buttonCancel: "#ce4f25",
     buttonDelete: "#3b021f",
+    watterGraph: "#00bded",
+    watterGraphText: "#00dded",
 
 };
 

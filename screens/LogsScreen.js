@@ -14,6 +14,7 @@ function LogsScreen() {
   function logStateHandler(steteLogData) {
     setpickedLog(steteLogData);
   }
+  
 
   useEffect(() => {
     Controler.getLogSample().then((response) => {
