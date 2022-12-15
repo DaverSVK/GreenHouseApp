@@ -1,8 +1,9 @@
+
 import { StyleSheet, Text, View, FlatList } from "react-native";
 
 import Colors from "../constants/Colors";
 import SingleLog from "../components/presets/SingleLog";
-import Controler from "../comunication/Controler";
+import Controler, { getLogSample } from "../comunication/Controler";
 import { useState, useEffect } from "react";
 import SingleLogFullSize from "../components/presets/SingleLogFullSize";
 
@@ -17,10 +18,13 @@ function LogsScreen() {
   
 
   useEffect(() => {
-    Controler.getLogSample().then((response) => {
-      setLogSample(response.data);
-      renderSample = logSample.slice(logSample.length - 10, logSample.length);
-    });
+  
+    async function getTheData() {
+      const response = await getLogSample();
+      setLogSample(response);
+    }
+    getTheData();
+    renderSample = logSample.slice(logSample.length - 10, logSample.length);
   }, [pickedLog]);
 
   renderSample = logSample.slice(logSample.length - 10, logSample.length);
@@ -36,6 +40,9 @@ function LogsScreen() {
           temperature={itemData.item.temperature}
           humidity={itemData.item.humidity}
           water={itemData.item.water}
+          water2={itemData.item.water2}
+          water3={itemData.item.water3}
+          water4={itemData.item.water4}
         />
       )}
       keyExtractor={(item) => item.id}
@@ -50,6 +57,9 @@ function LogsScreen() {
         temperature={pickedLog.temperature}
         humidity={pickedLog.humidity}
         water={pickedLog.water}
+        water2={pickedLog.water2}
+        water3={pickedLog.water3}
+        water4={pickedLog.water4}
       />
     );
   }

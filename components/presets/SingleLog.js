@@ -2,9 +2,9 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import Colors from "../../constants/Colors";
 import DateRecal from "../ui/DateRecal";
 
-function SingleLog({id, date, temperature, humidity,water,onPress}) {
+function SingleLog({id, date, temperature, humidity, water, water2, water3, water4,onPress}) {
   function pressHandler() {
-    onPress({date, temperature, humidity, water, id});
+    onPress({date, temperature, humidity, water, water2, water3, water4, id});
   }
   const dateFull = new String(date);
   return (

@@ -4,7 +4,7 @@ import DateRecal from "../ui/DateRecal";
 import Controler from "../../comunication/Controler";
 import Donut from "./Donut";
 
-function SingleLogFullSize({onCancel, date, temperature, humidity,water, id}) {
+function SingleLogFullSize({onCancel,id,date, temperature, humidity,water,water2,water3,water4 }) {
   const dateFull = new String(date);
   function cancelHandler() {
     onCancel(null);
@@ -33,18 +33,18 @@ function SingleLogFullSize({onCancel, date, temperature, humidity,water, id}) {
           
           <View style={styles.containerWaterSingle}>
             <Text style={styles.basicTextWater}>Water2: </Text>
-            <Donut percentage={Number(water)} valueText={water}/>
+            <Donut percentage={Number(water2)} valueText={water2}/>
           </View>
         </View>
         <View style={styles.containerWater}>
           <View style={styles.containerWaterSingle}>
             <Text style={styles.basicTextWater}>Water3: </Text>
-            <Donut percentage={Number(water)} valueText={water}/>
+            <Donut percentage={Number(water3)} valueText={water3}/>
           </View>
           
           <View style={styles.containerWaterSingle}>
             <Text style={styles.basicTextWater}>Water3: </Text>
-            <Donut percentage={Number(water)} valueText={water}/>
+            <Donut percentage={Number(water4)} valueText={water4}/>
           </View>
         </View>
         <View style={styles.containerButton}>
