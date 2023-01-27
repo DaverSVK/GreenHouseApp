@@ -1,35 +1,67 @@
 
+import { useState, useEffect, React } from "react";
 import { StyleSheet, Text, View, FlatList, Button, TextInput, TouchableWithoutFeedback, Keyboard} from "react-native";
+import { getSettingsSample } from "../comunication/Controler";
 
 import Colors from "../constants/Colors";
 import Sample from "../Sample";
 
 function SettingsScreen() {
-  
+  const [renderSample, setrenderSample] = useState([{
+    temperature: 0,
+    humidity: 0,
+    water_level: 0,
+    light_intensity: 0,
+    sampling_time: 0,
+  }]);
+
+    let temperature= "";
+    let humidity= "";
+    let water_level= "";
+    let light_intensity= "";
+    let sampling_time= "";
+    async function getTheData() {
+      const response = await getSettingsSample();
+      setrenderSample(response);
+     
+    }  
+
+  useEffect(() => {
+    getTheData();
+
+  }, []);
+  if(renderSample.temperature >= 0 ){
+    temperature= renderSample.temperature.toString() + ' °C';
+    humidity= renderSample.humidity.toString() + ' %';
+    water_level= renderSample.water_level.toString() + ' %';
+    light_intensity= renderSample.light_intensity.toString() + ' lux';
+    sampling_time= renderSample.sampling_time.toString() + ' sec';
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accesible={false}>
       <View style={styles.container}>   
       
         <View style={styles.settingsBlock}>  
           <Text style={styles.textHeader}>
-              Temperature:
+          Temperature:
           </Text>
           <TextInput
             style={styles.inputField}
             value={25}
-            placeholder="useless placeholder"
+            placeholder={temperature}
             keyboardType="numeric"
           />
         </View>
         <View style={styles.settingsBlock}>  
           <Text style={styles.textHeader}>
-              Humidity:
+            Humidity:
           </Text>
           <TextInput
             style={styles.inputField}
             value={25}
-            placeholder="useless placeholder"
             keyboardType="numeric"
+            placeholder={humidity}
           />
         </View>   
         <View style={styles.settingsBlock}>  
@@ -39,8 +71,8 @@ function SettingsScreen() {
           <TextInput
             style={styles.inputField}
             value={25}
-            placeholder="useless placeholder"
             keyboardType="numeric"
+            placeholder={water_level}
           />
         </View>   
         <View style={styles.settingsBlock}>  
@@ -50,8 +82,8 @@ function SettingsScreen() {
           <TextInput
             style={styles.inputField}
             value={25}
-            placeholder="useless placeholder"
             keyboardType="numeric"
+            placeholder={light_intensity}
           />
         </View>   
         <View style={styles.settingsBlock}>  
@@ -61,8 +93,8 @@ function SettingsScreen() {
           <TextInput
             style={styles.inputField}
             value={25}
-            placeholder="useless placeholder"
             keyboardType="numeric"
+            placeholder={sampling_time}
           />
         </View>  
         <View style={{marginTop: 30}}>
