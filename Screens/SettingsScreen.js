@@ -1,9 +1,10 @@
-import { useState, useEffect, React } from "react";
+import { useState, useEffect, React, useContext } from "react";
 import { StyleSheet, Text, View, FlatList, Button, TextInput, TouchableWithoutFeedback, Keyboard} from "react-native";
 import { getSettingsSample, updateSettingsSample } from "../comunication/Controler";
 
 import Colors from "../constants/Colors";
 import Sample from "../Sample";
+import { AuthContext } from "../store/auth-context";
 
 function SettingsScreen() {
   const [enteredTemperature, setEnteredTemperature] = useState(0);
@@ -18,6 +19,8 @@ function SettingsScreen() {
     light_intensity: 0,
     sampling_time: 0,
   }]);
+  const authCtx = useContext(AuthContext);
+  const token = authCtx.token;
 
   useEffect(() => {
     getTheData();
@@ -46,7 +49,7 @@ function SettingsScreen() {
 
 
     async function getTheData() {
-      const response = await getSettingsSample();
+      const response = await getSettingsSample(token);
 
       setEnteredTemperature(response.temperature);
       setEnteredHumidity(response.humidity);
@@ -63,7 +66,7 @@ function SettingsScreen() {
         humidity: enteredHumidity,
         water_level: enteredWaterLevel,
         light_intensity: enteredLightIntensity,
-        sampling_time: enteredSamplingTime,});
+        sampling_time: enteredSamplingTime,},token);
     }
 
   return (

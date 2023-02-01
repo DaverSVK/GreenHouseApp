@@ -1,17 +1,21 @@
 import axios from "axios";
+import { useContext } from "react";
+import AuthContent from "../components/auth/AuthContent";
+import { AuthContext } from "../store/auth-context";
 
 const URL = "https://fathomless-dusk-03713.herokuapp.com/servitka"
-const URL2 = "https://greenhouseapp-a928f-default-rtdb.firebaseio.com/data.json"
-const URL3 = "https://greenhouseapp-a928f-default-rtdb.firebaseio.com/settings.json"
+const URL2 = "https://greenhouseapp-a928f-default-rtdb.firebaseio.com/data.json?auth="
+const URL3 = "https://greenhouseapp-a928f-default-rtdb.firebaseio.com/settings.json?auth="
 
 
   
-  export async function getLogSample () {
-    const response = await axios.get(URL2);
+  export async function getLogSample (token) {
+    const urlNow = URL2+token;
+    const response = await axios.get(urlNow);
 
     const data = [];
 
-    console.log(response.data)
+    //console.log(response.data)
     for(const key in response.data){
       const dataObj = {
         id: key,
@@ -28,9 +32,9 @@ const URL3 = "https://greenhouseapp-a928f-default-rtdb.firebaseio.com/settings.j
 
     return data;
 }
-export async function getSettingsSample () {
-  const response = await axios.get(URL3);
-  console.log(response.data)
+export async function getSettingsSample (token) {
+  const urlNow = URL3+token;
+  const response = await axios.get(urlNow);
     const dataObj = {
       temperature: response.data.temperature,
       humidity: response.data.humidity,
@@ -43,8 +47,9 @@ console.log(dataObj);
   return dataObj;
 }
 
-export  function updateSettingsSample (settingsParam) {
-  return axios.put(URL3, settingsParam);
+export  function updateSettingsSample (settingsParam,token) {
+  const urlNow = URL3+token;
+  return axios.put(urlNow, settingsParam);
 }
 
 // class Controller{

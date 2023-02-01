@@ -32,7 +32,7 @@ function LogsScreen() {
   useEffect(() => {
   
     async function getTheData() {
-      const response = await getLogSample();
+      const response = await getLogSample(authCtx.token);
       setLogSample(response);
     }
     getTheData();
