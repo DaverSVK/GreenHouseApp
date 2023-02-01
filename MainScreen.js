@@ -20,6 +20,7 @@ import LogsScreen from './Screens/LogScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import Notification from './Screens/Notification';
 import Settings from './Screens/Settings';
+import ViewProfile from './Screens/ViewProfile';
 import { AuthContext } from './store/auth-context';
 
 export default function MainScreen() {
@@ -48,6 +49,10 @@ export default function MainScreen() {
     pickeLog = ( 
       <Settings/>
     )};
+  if (currentTab == "ViewProfile") {
+    pickeLog = ( 
+      <ViewProfile/>
+    )};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -67,7 +72,9 @@ export default function MainScreen() {
           marginTop: 20
         }}>Username</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+        setCurrentTab('ViewProfile')
+      }}>
           <Text style={{
             marginTop: 6,
             color: 'white'
@@ -81,8 +88,8 @@ export default function MainScreen() {
 
           {TabButton(currentTab, setCurrentTab, "Home", home)}
           {TabButton(currentTab, setCurrentTab, "Greenhouse", greenhouse)}
-          {TabButton(currentTab, setCurrentTab, "Notifications", notifications)}
-          {TabButton(currentTab, setCurrentTab, "Settings", settings)}
+          {/* {TabButton(currentTab, setCurrentTab, "Notifications", notifications)}
+          {TabButton(currentTab, setCurrentTab, "Settings", settings)} */}
 
         </View>
 
