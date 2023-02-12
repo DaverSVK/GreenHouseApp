@@ -17,8 +17,9 @@ import close from './assets/close.png';
 import photo from './assets/photo.png';
 import Colors from "./constants/Colors";
 import LogsScreen from './Screens/LogScreen';
+import LogsChangeScreen from './Screens/LogsChangeScreen';
 import SettingsScreen from './Screens/SettingsScreen';
-import Notification from './Screens/Notification';
+import Notification from './Screens/LogsChangeScreen';
 import Settings from './Screens/Settings';
 import ViewProfile from './Screens/ViewProfile';
 import { AuthContext } from './store/auth-context';
@@ -35,7 +36,7 @@ export default function MainScreen() {
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
   let pickeLog = (
-    <LogsScreen/>
+    <LogsChangeScreen/>
   );
   if (currentTab == "Greenhouse") {
     pickeLog = ( 
@@ -88,8 +89,8 @@ export default function MainScreen() {
 
           {TabButton(currentTab, setCurrentTab, "Home", home)}
           {TabButton(currentTab, setCurrentTab, "Greenhouse", greenhouse)}
-          {/* {TabButton(currentTab, setCurrentTab, "Notifications", notifications)}
-          {TabButton(currentTab, setCurrentTab, "Settings", settings)} */}
+          {/* {TabButton(currentTab, setCurrentTab, "Notifications", notifications)}*/}
+          {/* {TabButton(currentTab, setCurrentTab, "Settings", settings)}  */}
 
         </View>
 

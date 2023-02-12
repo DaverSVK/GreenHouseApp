@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressabl, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import Colors from "./constants/Colors";
 import good from "./assets/good.png";
 import wrong from "./assets/wrong.png";
@@ -6,9 +6,15 @@ import temp from "./assets/temp.png";
 import hum from "./assets/hum.png";
 import DateRecall from "./DateRecall";
 
-function Sample({id, temperature, humidity, isOK}) {
+function Sample({id, temperature, humidity, isOK,onPress}) {
+  function pressHandler() {
+    onPress({id, temperature, humidity});
+  }
     return (
-      <View style={styles.containerLog}>
+      <View>
+        <Pressable 
+            style={styles.containerLog}
+            onPress={pressHandler}>
           <View style={styles.containerDate}>
             <DateRecall dateFull={id}/>
           </View>
@@ -37,6 +43,7 @@ function Sample({id, temperature, humidity, isOK}) {
                 }}></Image>
             
           </View>
+          </Pressable>
       </View>
     );
   }

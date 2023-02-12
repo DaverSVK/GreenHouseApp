@@ -12,6 +12,7 @@ async function authenticate(mode, email, password) {
         returnSecureToken: true
     });
     const token = response.data.idToken;
+    console.log(token);
     return token;
 }
 export  function createUser(email, password) {
