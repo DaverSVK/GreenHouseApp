@@ -185,7 +185,7 @@ export default function MainScreen() {
             </View>
 
           
-          <View>
+          <View style={{ height: "100%"}}>
             <View>{pickeLog}</View>
           </View>
         </Animated.View>

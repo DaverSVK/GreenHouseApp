@@ -22,11 +22,16 @@ const URL3 = "https://greenhouseapp-a928f-default-rtdb.firebaseio.com/settings.j
         date: response.data[key].date,
         temperature: response.data[key].temperature,
         humidity: response.data[key].humidity,
+        altitude: response.data[key].altitude,
+        lux: response.data[key].lux,
+        pressure: response.data[key].pressure,
         water: response.data[key].water,
         water2: response.data[key].water2,
         water3: response.data[key].water3,
-        water4: response.data[key].water4
+        water4: response.data[key].water4,
+        isok: response.data[key].isok,
     };
+    console.log(response.data[key].isok)
     data.push(dataObj);
   }
 

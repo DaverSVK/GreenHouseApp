@@ -6,10 +6,11 @@ import temp from "./assets/temp.png";
 import hum from "./assets/hum.png";
 import DateRecall from "./DateRecall";
 
-function Sample({id, temperature, humidity, isOK,onPress}) {
+function Sample({id, dataSample,onPress}) {
   function pressHandler() {
-    onPress({id, temperature, humidity});
+    onPress(dataSample);
   }
+  console.log(dataSample.isOK)
     return (
       <View>
         <Pressable 
@@ -25,7 +26,7 @@ function Sample({id, temperature, humidity, isOK,onPress}) {
                 height: 35,
                 tintColor: 'white',
                 }}></Image>
-              <Text style={styles.textField}>{temperature}°C</Text>
+              <Text style={styles.textField}>{dataSample.temperature}°C</Text>
             
             
             <Image source={hum} style={{
@@ -33,12 +34,12 @@ function Sample({id, temperature, humidity, isOK,onPress}) {
                 height: 35,
                 tintColor: 'white',
                 }}></Image>
-              <Text style={styles.textField}>{humidity}%</Text>
+              <Text style={styles.textField}>{dataSample.humidity}%</Text>
            
-                <Image source={isOK ? good : wrong} style={{
+                <Image source={dataSample.isok ? good : wrong} style={{
                 width: 40,
                 height: 40,
-                tintColor: isOK ?'white' : Colors.marker100,
+                tintColor: dataSample.isok ?'white' : Colors.marker100,
                 margin: 5,
                 }}></Image>
             

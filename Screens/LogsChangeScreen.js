@@ -40,9 +40,7 @@ function LogsChangeScreen() {
           renderItem={(itemData) => (
             <Sample
               id={itemData.item.date}
-              temperature={itemData.item.temperature}
-              humidity={itemData.item.humidity}
-              isOK={itemData.item.isOK}
+              dataSample={itemData.item}
               onPress={logStateHandler}
             />
           )}
@@ -55,14 +53,13 @@ function LogsChangeScreen() {
     pickeLog = ( 
       <Settings
       onCancel={logStateHandler}
-      id={pickedLog.id}
-      temperature={pickedLog.temperature}
-      humidity={pickedLog.humidity}/>
+      dataSample={pickedLog}
+      />
     )};
 
 
   return (
-    <View>{pickeLog}</View>
+    <View style={{ height: "100%"}}>{pickeLog}</View>
   );
 }
 
@@ -71,11 +68,11 @@ export default LogsChangeScreen;
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
-    height: '89%',
+    height: '70%',
   },
   container2: {
     marginTop: 30,
-    height: '91.33%',
+    height: '81%',
   },
   settingsBlock: {
     paddingBottom: 20,
