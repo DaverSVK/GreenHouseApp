@@ -10,3 +10,5 @@ As for visualisation it is needed to have Android virtual machine or IOS
 Then just simply open terminal in cloned project and run 
 $npm start 
 command
+
+The login credentials can be obtained by contacting me.
