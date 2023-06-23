@@ -11,12 +11,16 @@ function SettingsScreen() {
   const [enteredHumidity, setEnteredHumidity] = useState(0);
   const [enteredWaterLevel, setEnteredWaterLevel] = useState(0);
   const [enteredSamplingTime, setEnteredSamplingTime] = useState(0);
-  const [enteredLightIntensity, setEnteredLightIntensity] = useState(0);
+  const [enteredLightStart, setEnteredLightStart] = useState(0);
+  const [enteredLightDuration, setEnteredLightDuration] = useState(0);
+  const [enteredWatering, setEnteredWatering] = useState(0);
   const [renderSample, setrenderSample] = useState([{
     temperature: 0,
     humidity: 0,
     water_level: 0,
-    light_intensity: 0,
+    light_start: 0,
+    light_duration: 0,
+    watering: 0,
     sampling_time: 0,
   }]);
   const authCtx = useContext(AuthContext);
@@ -38,8 +42,14 @@ function SettingsScreen() {
       case 'waterLevel':
         setEnteredWaterLevel(enteredValue);
         break;
-      case 'lightIntensity':
-        setEnteredLightIntensity(enteredValue);
+      case 'lightStart':
+        setEnteredLightStart(enteredValue);
+        break;
+      case 'lightDuration':
+        setEnteredLightDuration(enteredValue);
+        break;
+      case 'watering':
+        setEnteredWatering(enteredValue);
         break;
       case 'samplingTime':
         setEnteredSamplingTime(enteredValue);
@@ -54,9 +64,11 @@ function SettingsScreen() {
       setEnteredTemperature(response.temperature);
       setEnteredHumidity(response.humidity);
       setEnteredWaterLevel(response.water_level);
-      setEnteredLightIntensity(response.light_intensity);
+      setEnteredLightStart(response.light_start);
+      setEnteredLightDuration(response.light_duration);
+      setEnteredWatering(response.watering);
       setEnteredSamplingTime(response.sampling_time);
-      
+
       setrenderSample(response);
      
     }
@@ -65,7 +77,9 @@ function SettingsScreen() {
         temperature: enteredTemperature,
         humidity: enteredHumidity,
         water_level: enteredWaterLevel,
-        light_intensity: enteredLightIntensity,
+        light_start: enteredLightStart,
+        light_duration: enteredLightDuration,
+        watering: enteredWatering,
         sampling_time: enteredSamplingTime,},token);
     }
 
@@ -83,18 +97,7 @@ function SettingsScreen() {
             value={enteredTemperature}
             keyboardType="numeric"
           />
-        </View>
-        <View style={styles.settingsBlock}>  
-          <Text style={styles.textHeader}>
-            Humidity [%]:
-          </Text>
-          <TextInput
-            style={styles.inputField}
-            onChangeText={updateInputValueHandler.bind(this, 'humidity')}
-            value={enteredHumidity}
-            keyboardType="numeric"
-          />
-        </View>   
+        </View> 
         <View style={styles.settingsBlock}>  
           <Text style={styles.textHeader}>
               Water level [%]:
@@ -108,15 +111,37 @@ function SettingsScreen() {
         </View>   
         <View style={styles.settingsBlock}>  
           <Text style={styles.textHeader}>
-              Light intensity [lux]:
+              Light start [time]:
           </Text>
           <TextInput
             style={styles.inputField}
-            onChangeText={updateInputValueHandler.bind(this, 'lightIntensity')}
-            value={enteredLightIntensity}
+            onChangeText={updateInputValueHandler.bind(this, 'lightStart')}
+            value={enteredLightStart}
             keyboardType="numeric"
           />
         </View>   
+        <View style={styles.settingsBlock}>  
+          <Text style={styles.textHeader}>
+              Light duration [sec]:
+          </Text>
+          <TextInput
+            style={styles.inputField}
+            onChangeText={updateInputValueHandler.bind(this, 'lightDuration')}
+            value={enteredLightDuration}
+            keyboardType="numeric"
+          />
+        </View> 
+        <View style={styles.settingsBlock}>  
+          <Text style={styles.textHeader}>
+              Watering [on/off]:
+          </Text>
+          <TextInput
+            style={styles.inputField}
+            onChangeText={updateInputValueHandler.bind(this, 'watering')}
+            value={enteredWatering}
+            keyboardType="numeric"
+          />
+        </View>     
         <View style={styles.settingsBlock}>  
           <Text style={styles.textHeader}>
               Sampling T [sec]:
@@ -128,7 +153,7 @@ function SettingsScreen() {
             keyboardType="numeric"
           />
         </View>  
-        <View style={{marginTop: 30}}>
+        <View style={{marginTop: 10}}>
           <Button
                 title="Change settings"
                 color={'#000'}

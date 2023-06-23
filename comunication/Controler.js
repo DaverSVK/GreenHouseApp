@@ -44,7 +44,9 @@ export async function getSettingsSample (token) {
       temperature: response.data.temperature,
       humidity: response.data.humidity,
       water_level: response.data.water_level,
-      light_intensity: response.data.light_intensity,
+      light_start: response.data.light_start,
+      light_duration: response.data.light_duration,
+      watering: response.data.watering,
       sampling_time: response.data.sampling_time,
   };
 
